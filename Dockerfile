@@ -1,10 +1,10 @@
-FROM node:17-alpine AS base
+FROM node:20-alpine AS base
 
 FROM base AS builder
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm ci
-COPY tsconfig.json .eslintrc .eslintignore ./
+COPY tsconfig.json eslint.config.mjs ./
 COPY src src
 RUN npm run build
 
